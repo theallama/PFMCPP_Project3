@@ -143,7 +143,7 @@ void Cat::scratchFurniture(bool isChair, int numFurnitureDestroyed)
 {
     if(!isChair)
     {
-       numFurnitureDestroyed += 1;
+        numFurnitureDestroyed += 1;
     }
         
 }
@@ -184,7 +184,7 @@ bool Cat::sleep(bool isAsleep)
         endTime.hour < 5 && 
         endTime.isPM == false )
     {
-       return isAsleep;
+        return isAsleep;
     }
     return !isAsleep;
 }
@@ -663,7 +663,7 @@ void JumboJet::carryCargo(int maxWeightPermitLuggagePerPassenger)
     }
     else if(checkWeight == "fail")
     {
-         std::cout << "Do not load cargo" << std::endl;
+        std::cout << "Do not load cargo" << std::endl;
     }
 }
 
