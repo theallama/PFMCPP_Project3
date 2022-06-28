@@ -43,22 +43,21 @@ int main()
 struct Cat
 {
     Cat();
-    int catEars = 2;
-    std::string catName = "Fluffers";
-    float dailyFoodIntake = 1.4f;
+    std::string type;
+    int numEars;
+    float dailyFoodIntake {5.4f};
     std::string furColor = "brown";
     double tailLength = 5.3432;
 
     struct Kitten 
     {    
-        int birthYear = 2020;
+        int birthYear {2020};
         Kitten();
-        bool isNice = false;
+        std::string disposition;
         int numLegs = 4;
-        int numWhiskers = 20;
+        int numWhiskers {24};
         std::string catBreed = "Tabby";
         
-
         void feed(bool isHungry);
         void pet(bool isAffectionate, float minutesToPet);
         void roamNeighborhood(bool rainyWeather, float avgCatTravels = 20.f);
@@ -67,18 +66,21 @@ struct Cat
     void scratchFurniture(bool isChair = false, int numberOfFurniture = 10);
     void makeNoise(bool foodBowlEmpty = true);
     bool sleep(bool isAsleep = true);
+    void typicalCat(std::string, int, float);
 
     Kitten kittenJunior; 
 };
 
 Cat::Cat()
+: type("domesticated"), numEars(2), dailyFoodIntake(5.1f)
 {
-    std::cout << "Cat being constructed!" << std::endl;  
+        std::cout << "A typical " << type << " cat  has " << numEars << " ears and eats one " << dailyFoodIntake << " oz can of cat food a day." << std::endl;
 }
 
-Cat::Kitten::Kitten()
+Cat::Kitten::Kitten() 
+: disposition("nice"), numWhiskers(26)
 {
-    std::cout << "Kitten being constructed!" << std::endl;
+    std::cout << "A " << disposition << " kitten with " << numWhiskers << " whiskers being constructed!" << std::endl;
 }
 
 void Cat::Kitten::feed(bool isHungry)
@@ -161,21 +163,24 @@ bool Cat::sleep(bool isAsleep)
 struct Range
 {
     Range();
-    int numOfRack = 3;
+    int numOfRack;
     int maxTempOven = 450;
     std::string fuelType = "gas";
-    int numOfTops = 4;
+    int numOfTops;
     int width = 36;
 
     struct RangeControls
     {
-        std::string clockSettingOption = "24hrs";
-        RangeControls();
+        int date_;
+        RangeControls() : date_(20220628) {}
+        std::string clockSettingOption {"24hrs"};
+        int daysLeft;
         std::string controlPanelColor = "chrome";
         int controlPanelWidth = 24;
         bool supportsWifi = true;
         bool isAnalog = false;
 
+        void printDaysLeft(int warrantyBy);
         void informCurrentTime (bool timeUpdated);
         void indicateRepairDate (std::string date, bool needsRepair);
         bool selfCleans (bool heavyCleaning = true, std::string setting = "");
@@ -186,12 +191,14 @@ struct Range
     void breaksDown (int ageOfHeatingElement);
     void heatsTheKitchen (int, int);
 
-    RangeControls updatedSettings;
+    RangeControls updatedSettings; 
 };
 
-Range::Range()
+
+Range::Range() 
+: numOfRack(3), numOfTops(6)
 {
-    std::cout << "Range being constructed" << std::endl;
+    std::cout << "Range with " << numOfRack << " oven racks and " << numOfTops << " cooktops being constructed" << std::endl;
 }
 
 void Range::consumeFuel(std::string fuelSource = "electric", int energyEfficiency = 65)
@@ -221,11 +228,11 @@ void Range::heatsTheKitchen(int durationOperated, int ovenTemp)
     std::cout << "Currently kitchen temp is " << kitchenTemp << " due to oven use." << std::endl;
 }
 
-
-Range::RangeControls::RangeControls()
-{
-    std::cout << "Range controls being constructed" << std::endl;
-}
+void Range::RangeControls::printDaysLeft(int warrantyBy = 20220630)
+    {
+        daysLeft = warrantyBy - date_;
+        std::cout << "You have: " << daysLeft << " days left until your warrnty expires." << std::endl;
+    }
 
 void Range::RangeControls::informCurrentTime (bool timeUpdated)
 {
@@ -263,9 +270,9 @@ struct ShoppingCart
 {
     ShoppingCart ();
     std::string cartMaterial = "aluminum";
-    int numWheels = 4;
+    int numWheels;
     std::string colorHandle = "red";
-    float cartWidth = 24.1f;
+    float cartWidth;
     std::string cartStore = "Albertsons";
 
     bool carryGrocery (bool badWheels = false, float weightLimit =  40.2f);
@@ -274,8 +281,9 @@ struct ShoppingCart
 };
 
 ShoppingCart::ShoppingCart()
+: numWheels(4), cartWidth(1.1f)
 {
-    std::cout << "Shopping cart being constructed!" << std::endl;
+    std::cout << cartWidth << " wide shopping cart with " << numWheels << " wheels being constructed!" << std::endl;
 }
 
 bool ShoppingCart::carryGrocery (bool badWheels, float weight)
@@ -311,7 +319,7 @@ struct Wind
     std::string direction = "North West";
     std::string definition = "movement in air molecules";
     std::string cause = "difference in gas density";
-    std::string use = "wind energy";
+    std::string use;
 
     void transportSeeds (int, std::string, int);
     bool turnTurbines (std::string, float gust = 34.2f);
@@ -319,8 +327,9 @@ struct Wind
 }; 
 
 Wind::Wind()
+: use("wind energy")
 {
-    std::cout << "Wind being constructed!" << std::endl;
+    std::cout << "Wind being constructed to create " << use << std::endl;
 }
 
 void Wind::transportSeeds (int numSeeds, std::string treeName, int milesTraveled)
@@ -356,8 +365,8 @@ struct PlaneWings
     float flex = 25.3f;
     int fuelCarried = 23;
     int numOfAilerons = 4;
-    int numEngines = 4;
-    float wingSpan = 195.3f;
+    int numEngines;
+    float wingSpan;
 
     void generateLift (bool, std::string);
     bool reduceDrag  (float tailwind = 10.f);
@@ -365,8 +374,9 @@ struct PlaneWings
 };
 
 PlaneWings::PlaneWings()
+: numEngines(4), wingSpan(195.3f)
 {
-    std::cout << "Plane wings being constructed!" << std::endl;
+    std::cout << "Jumbo jet wings span " << wingSpan << " feet and have "<< numEngines << " engines attached to them." << std::endl;
 }
 
 void PlaneWings::generateLift (bool upwardForce, std::string airDirection)
@@ -399,7 +409,7 @@ struct LandingGear
     float wheelDiameter = 3.21f;
     int numWheels = 8;
     float weightOfNose = 34.2f;
-    int numMainLandingGear  = 16;
+    int numMainLandingGear;
     float pressureTire = 200.1f;
 
     int reduceLandingImpact (float tirePressure = 250.2f, int landingSpeed = 20);
@@ -408,8 +418,9 @@ struct LandingGear
 };
 
 LandingGear::LandingGear()
+: numMainLandingGear(16)
 {
-    std::cout << "Landing gear being constructed!"  << std::endl;
+    std::cout << numMainLandingGear << " landing gear being constructed!"  << std::endl;
 }
 
 int LandingGear::reduceLandingImpact (float tirePressure, int landingSpeed)
@@ -454,10 +465,10 @@ void LandingGear::toggleLandingGear (bool takeOff, std::string landingGearStatus
 struct PlaneTail 
 {
     PlaneTail();
-    float weightLowerRudder =  2400.1f;
+    float weightLowerRudder;
     float lengthOfLowerRudder = 62.f;
     std::string auxPower = "helps plane turn";
-    float weigtUpperRudder = 2400.1f;
+    float weigtUpperRudder;
     float heightUpperRudder = 62.f;
     int powerConsumed = 1;
     
@@ -467,8 +478,9 @@ struct PlaneTail
 };
 
 PlaneTail::PlaneTail()
+: weightLowerRudder(1000.1f), weigtUpperRudder(1000.1f)
 {   
-    std::cout << "Plane Tail being constructed!"  << std::endl;
+    std::cout << "Jumbo jet's tail weighs over " << weightLowerRudder + weigtUpperRudder << " lbs."<< std::endl;
 }
 
 void PlaneTail::runPowerUnit (std::string planeStatus)
@@ -509,7 +521,7 @@ struct PassengerCabin
     std::string seatMaterial = "leather";
     int numToilets = 4;
     float weightCarryOn = 1;
-    float aisleWidth = 42.1f;
+    int aisleWidth;
 
     void carryPassengers (int numPassengers = 200);
     void carryToilets (int numOfToilets, int numPassengers);
@@ -519,8 +531,9 @@ struct PassengerCabin
 using namespace std;
 
 PassengerCabin::PassengerCabin()
+: aisleWidth(1)
 {   
-    cout << "Passenger cabin being constructed!"  << endl;
+    cout << "Passenger cabin typically has "  << aisleWidth * 2 << " " << aisleWidth << "ft wide aisles." << endl;
 }
 
 void PassengerCabin::carryPassengers (int numPassengers)
@@ -548,7 +561,7 @@ struct Fuselage
     float thicknessFuselageWall = 24.2f;
     int weightExteriorPaint = 595;
     std::string planeMaterial = "aluminum";
-    float diameterFuselage = 20.2f;
+    float diameterFuselage;
     float weightFuselage = 234.4f;
 
     void formsPlaneStructure (float fuselageDiameter = 234.3f);
@@ -557,8 +570,9 @@ struct Fuselage
 };
 
 Fuselage::Fuselage()
+: diameterFuselage(20.f)
 {
-    std::cout << "Fuselage being constructed!" << std::endl;
+    std::cout << "The typical fuselage diameter is " << diameterFuselage << "ft." << std::endl;
 }
 
 void Fuselage::formsPlaneStructure (float fuselageDiameter)
@@ -587,12 +601,15 @@ void Fuselage::storeCargo (float cargoWeight)
 
 struct JumboJet
 {
-    JumboJet();
+    int n;
+    JumboJet() : n(0) {}
     PlaneWings rightWings;
     LandingGear wheels;
     PlaneTail lowerRudder;
     PassengerCabin touristClass;
     Fuselage lastRepair; 
+
+    void numJumboJet (std::string airport);
 
     void carryPassengers(std::string destination, int numOfPassengers);
     bool fly(bool safetyInspection, double gust);
@@ -600,9 +617,9 @@ struct JumboJet
     std::string carryFuel(int);
 }; 
 
-JumboJet::JumboJet()
+void JumboJet::numJumboJet(std::string airport = "Burlington")
 {
-    std::cout << "Jumbo jet being constructed!" << std::endl;
+    std::cout << "Currently " << n << " jumbo jet(s) available at " << airport << " airport." << std::endl;
 }
 
 void JumboJet::carryPassengers(std::string destination, int numOfPassengers)
@@ -690,6 +707,10 @@ int main()
     myRange.heatsTheKitchen(7, 420);
 
     std::cout << "My range has a "<< myRange.fuelType << " powered oven that reaches up to " << myRange.maxTempOven << " F in temp." << std::endl;
+
+    Range::RangeControls specialFeature;
+    specialFeature.printDaysLeft(20220630);
+
     
     Range::RangeControls backControls;
 
@@ -767,6 +788,7 @@ int main()
     Delta.carryPassengers("Tampa", 100);
     Delta.fly(true, 30);
     Delta.carryCargo(1);
+    Delta.numJumboJet("Rutland");
 
     std::cout << "A jumbo jet carries about "<< Delta.carryFuel(7) << " gallons of fuel in 7 tanks." << std::endl;
 
