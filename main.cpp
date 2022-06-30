@@ -98,15 +98,13 @@ struct Cat
         void roll(int numRolls, int happyIdxOutOfTen = 0)
         {
             auto hi = happyIdxOutOfTen;
-            while (numRolls < 100)
+            while (numRolls < 30)
             {  
                 for(hi = 1; hi <= 9; ++hi)
                 {
                     numRolls+=10;
                     std::cout << "Kitten rolls " << numRolls  << " times on the floor."  << std::endl; 
-                    
                 }
-            break;
             }
             std::cout << "Kitten is feeling too dizzy to roll anymore." << std::endl;   
             
@@ -119,16 +117,16 @@ struct Cat
     void typicalCat(std::string, int, float);
     void gainWeight(int weight) 
     {
-        int overweight = 20;
-        auto w = weight;
-        while (weight < overweight)
+        int overweightThreshold = 30;
+        int week;
+        while (weight < overweightThreshold)
         {
-            for(w = 1; w <= 3; ++w)
+            for(week = 1; week <= 4; week++)
             {
-            dailyFoodIntake += 1.f;
-            std::cout << "Kitty eating more and more every day" << std::endl;
+                dailyFoodIntake += 3.f;
+                std::cout << "Kitty eating more and more every day" << std::endl;
+                weight += 5;
             }
-        break;
         }
         std::cout << "Kitty on a diet." << weight  << std::endl;
     }
@@ -259,7 +257,6 @@ struct Range
                     ovenTemp += 1;
                     std::cout << "Increasing the oven temperature." << std::endl;   
                 }
-            break;
             }
             std::cout << "Warning. Oven too hot." << std::endl;  
         }  
@@ -277,7 +274,6 @@ struct Range
                 numOfTops += 1;
                 std::cout << "Pricier ovens have more cooktops." << std::endl;   
             }
-        break;
         }
         std::cout << "Ovens do not come in a bigger size." << std::endl;   
     }
@@ -376,7 +372,7 @@ struct ShoppingCart
             ++degreeHill;
             std::cout << "Shopping cart rolling down faster and faster." << std::endl;
         }
-        std::cout << "Shopping cart probably not moving much." << std::endl;
+        std::cout << "Shopping cart fell and is damaged." << std::endl;
     }
 };
 
@@ -425,18 +421,19 @@ struct Wind
     void transportSeeds (int, std::string, int);
     bool turnTurbines (std::string, float gust = 34.2f);
     void helpBirdTravel (std::string direction2, bool birdFly, float gust = 34.2f);
-    void beaufortScale(int gust, int highParam)
+    void beaufortScale(int gust, int highParam = 64)
     {
         int lowerParam = 1;
-        while (highParam <= 64)
+        while (gust <= highParam)
         {
-            if (gust > lowerParam  && gust < highParam )
+            if (gust > lowerParam )
             {
                 lowerParam += 6;
+                gust += 30;
                 std::cout << "Within Beaufort scale." << std::endl;
+               
             }
             std::cout << "Gust: " << gust << std::endl;
-            break;
         }
         std::cout << "Hurricane alert. Past the top end of the Beaufort scale." << std::endl;
     }
@@ -493,8 +490,8 @@ struct PlaneWings
         {
             for (wingSpan = 200; wingSpan <= 202; ++wingSpan)
             {
-            flex += 1;
-            std::cout << "Longer the wing, more it can flex." << std::endl;   
+                flex += 1;
+                std::cout << "Longer the wing, more it can flex." << std::endl;   
             }
         }
         std::cout << "Wing broken when flexed over 28ft." << std::endl;
@@ -547,8 +544,8 @@ struct LandingGear
     {  
         while  ( currentPressure <= maxTirePressure)
         {
+            currentPressure += 30.f;
             std::cout << "Tire pressure should ideally reach " << maxTirePressure << std::endl;
-            break;
         }
         std::cout << "Tires burst." << std::endl;
     }
@@ -614,15 +611,10 @@ struct PlaneTail
     void turnPlane(bool lowerRudderOpen = true);
     void cancelRightTurn( int degreeOfrightTurnInducedByDrag, int rudderDegree)
     {
-        auto dort = degreeOfrightTurnInducedByDrag;
-        while (rudderDegree <= 5)
+        while (rudderDegree <= degreeOfrightTurnInducedByDrag)
         {
-            for(dort = 1 ; dort <= 5; ++dort )
-            {
-            rudderDegree -= dort;
+            rudderDegree += 20;
             std::cout << "Rudder coordinates the plan to turn"<< std::endl;
-            }
-        break;
         }
         std::cout << "Emergency landing! Strong drag."<< std::endl;
     }  
@@ -677,22 +669,22 @@ struct PassengerCabin
     void carryPassengers(int numPassengers = 200);
     void carryToilets(int numOfToilets, int numPassengers);
     void blanketsAlert(int numPassengers, int numBlankets);
-    void supplyJuice( int numPassengers, int juiceConsumed)
+    void supplyJuice(int numPassengers)
     {
-        int juiceInStock = 0;
+        int juiceInStock = numPassengers * 3;
+        int juiceConsumed = 0;
         auto np = numPassengers;
-        while (juiceConsumed <= 2)
+        while (juiceConsumed < juiceInStock)
         {
-            for(np = 1; np <= 2; ++np)
+            for(np = 1; np <= numPassengers; ++np)
             {
-                juiceInStock++; 
-                std::cout << "Each passenger may have 1+ juice box." << std::endl;
+                juiceConsumed += 3;
+                std::cout << "Each passenger may have up to 3 juice boxes." << std::endl;
             }
-        break;
+            
         }
         std::cout << "Offer passenger something else to drink." << std::endl;
     }
-    
 };
 
 PassengerCabin::PassengerCabin()
@@ -735,16 +727,11 @@ struct Fuselage
     void paintExterior(int paintWeight)
     {
         double mainDiameter = 1.112;
-        auto pw = paintWeight;
         while (paintWeight < 600)
         {
-            
-            for(pw = 1; pw < 3; ++pw)
-            {
-                mainDiameter += 1.11111;
-                std::cout << "More paint adds to a larger diameter of the fuselage." << std::endl;
-            }
-        break;      
+            paintWeight += 50;
+            mainDiameter += 1.11111;
+            std::cout << "More paint adds to a larger diameter of the fuselage." << std::endl;
         }
         std::cout << "Not up to code. Too much paint." << std::endl;
     }
@@ -798,15 +785,15 @@ struct JumboJet
     std::string carryFuel(int);
     void increaseAirportProfit(int airportProfit, int flightsPerDay)
     {
-        auto fpd = flightsPerDay;
+        int maxBudget = 10;
         while (flightsPerDay < 136)
         {
-            for (fpd = 1; fpd < 3; ++fpd)
+            for (int budget = 0; budget < maxBudget; ++budget)
             {
+                flightsPerDay += 80;
                 airportProfit += 100;
                 std::cout << "Our airport is growing." << std::endl;
             }
-        break;
         }
         std::cout << "Excessive maintenance cost. The cons outweigh the pros." << std::endl;
     }
@@ -882,7 +869,7 @@ int main()
     Mittens.makeNoise(true);
     Mittens.scratchFurniture(false, 10);
     Mittens.sleep(true);
-    Mittens.gainWeight(18);
+    Mittens.gainWeight(2);
 
      std::cout << "Mittens has a "<< Mittens.tailLength << " inch long " << Mittens.furColor << " tail!" <<std::endl;
     
@@ -954,7 +941,7 @@ int main()
     noseLandingGear.reduceLandingImpact(250.2f, 20);
     noseLandingGear.preventFuselageHittingGround(false);
     noseLandingGear.toggleLandingGear(true, "retracted");
-    noseLandingGear.inflate(200.f);
+    noseLandingGear.inflate(150.f);
 
      std::cout << "The nose landing gear has  "<< noseLandingGear.numMainLandingGear/4 << " wheels and the pressure in the tires is about " << noseLandingGear.maxTirePressure << " psi." << std::endl;
 
@@ -963,7 +950,7 @@ int main()
     DeltaAirTail.runPowerUnit("on the ground");
     DeltaAirTail.consumePower(false);
     DeltaAirTail.turnPlane(false);
-    DeltaAirTail.cancelRightTurn(3, 3);
+    DeltaAirTail.cancelRightTurn(40, 0);
 
     std::cout << "The tip of the tail fin is  "<< DeltaAirTail.heightUpperRudder << " above the ground." << std::endl;
     
@@ -972,7 +959,7 @@ int main()
     touristClass.carryPassengers(200);
     touristClass.carryToilets(12, 400);
     touristClass.blanketsAlert(200, 180);
-    touristClass.supplyJuice(29, 2);
+    touristClass.supplyJuice(5);
 
     touristClass.seatMaterial = "polyester";
 
