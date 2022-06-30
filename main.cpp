@@ -120,16 +120,17 @@ struct Cat
     void typicalCat(std::string, int, float);
     void gainWeight(int weight) 
     {
-        auto w = weight;
         int overweight = 20;
+        auto w = weight;
         while (weight < overweight)
+        {
+            for(w = 1; w <= 3; ++w)
             {
-                for(w = 1; w <= 3; ++w)
-                {
-                dailyFoodIntake += 1.f;
-                std::cout << "Kitty eating more and more every day" << std::endl;
-                }
+            dailyFoodIntake += 1.f;
+            std::cout << "Kitty eating more and more every day" << std::endl;
             }
+        break;
+        }
         std::cout << "Kitty on a diet." << weight  << std::endl;
     }
 
@@ -615,11 +616,14 @@ struct PlaneTail
     void cancelRightTurn( int degreeOfrightTurnInducedByDrag, int rudderDegree)
     {
         auto dort = degreeOfrightTurnInducedByDrag;
-        while (degreeOfrightTurnInducedByDrag <= 90)
+        while (rudderDegree <= 5)
         {
-            for(dort = 1 ; dort <= 4; ++dort )
+            for(dort = 1 ; dort <= 5; ++dort )
+            {
             rudderDegree -= dort;
             std::cout << "Rudder coordinates the plan to turn"<< std::endl;
+            }
+        break;
         }
         std::cout << "Emergency landing! Strong drag."<< std::endl;
     }  
@@ -700,7 +704,7 @@ PassengerCabin::PassengerCabin()
 
 void PassengerCabin::carryPassengers (int numPassengers)
 {
-    std::cout << "Carrying: " << numPassengers << " passengers"<< std::endl;
+    std::cout << "Carrying " << numPassengers << " passengers"<< std::endl;
 }
 
 void PassengerCabin::carryToilets (int numOfToilets, int numPassengers)
@@ -879,7 +883,7 @@ int main()
     Mittens.makeNoise(true);
     Mittens.scratchFurniture(false, 10);
     Mittens.sleep(true);
-    Mittens.gainWeight(10);
+    Mittens.gainWeight(18);
 
      std::cout << "Mittens has a "<< Mittens.tailLength << " inch long " << Mittens.furColor << " tail!" <<std::endl;
     
@@ -960,7 +964,7 @@ int main()
     DeltaAirTail.runPowerUnit("on the ground");
     DeltaAirTail.consumePower(false);
     DeltaAirTail.turnPlane(false);
-    DeltaAirTail.cancelRightTurn(80, 70);
+    DeltaAirTail.cancelRightTurn(3, 3);
 
     std::cout << "The tip of the tail fin is  "<< DeltaAirTail.heightUpperRudder << " above the ground." << std::endl;
     
