@@ -81,6 +81,7 @@ struct Cat
     float dailyFoodIntake {5.4f};
     std::string furColor = "brown";
     double tailLength = 5.3432;
+    
 
     struct Kitten 
     {    
@@ -89,17 +90,46 @@ struct Cat
         std::string disposition;
         int numLegs = 4;
         int numWhiskers {24};
-        std::string catBreed = "Tabby";
-        
+        std::string catBreed = "Tabby";       
+
         void feed(bool isHungry);
         void pet(bool isAffectionate, float minutesToPet);
         void roamNeighborhood(bool rainyWeather, float avgCatTravels = 20.f);
+        void roll(int numRolls, int happyIdxOutOfTen = 0)
+        {
+            numRolls = 0;
+            while (numRolls < 100)
+            {  
+                for(happyIdxOutOfTen = 1; happyIdxOutOfTen <= 10; ++happyIdxOutOfTen)
+                {
+                    numRolls+=10;
+                    std::cout << "Kitten rolls " << numRolls  << " times on the floor."  << std::endl; 
+                    
+                }
+            break;
+            }
+            std::cout << "Kitten is feeling too dizzy to roll anymore." << std::endl;   
+            
+        }
     };
 
     void scratchFurniture(bool isChair = false, int numberOfFurniture = 10);
     void makeNoise(bool foodBowlEmpty = true);
     bool sleep(bool isAsleep = true);
     void typicalCat(std::string, int, float);
+    void gainWeight(int weight, int overweight = 20) 
+    {
+       
+        while (weight < overweight)
+            {
+                for(weight = 10; weight <= 20; ++weight)
+                {
+                dailyFoodIntake += 1.f;
+                std::cout << "Kitty eating more and more every day" << std::endl;
+                }
+            }
+        std::cout << "Kitty on a diet." << weight  << std::endl;
+    }
 
     Kitten kittenJunior; 
 };
@@ -192,7 +222,6 @@ bool Cat::sleep(bool isAsleep)
     return !isAsleep;
 }
 
-
 struct Range
 {
     Range();
@@ -212,17 +241,44 @@ struct Range
         int controlPanelWidth = 24;
         bool supportsWifi = true;
         bool isAnalog = false;
+        int maxKnobTurned = 10;
 
         void printDaysLeft(int warrantyBy);
-        void informCurrentTime (bool timeUpdated);
-        void indicateRepairDate (std::string date, bool needsRepair);
-        bool selfCleans (bool heavyCleaning = true, std::string setting = "");
-        
+        void informCurrentTime(bool timeUpdated);
+        void indicateRepairDate(std::string date, bool needsRepair);
+        bool selfCleans(bool heavyCleaning = true, std::string setting = "");
+        void turnUpTemp(int ovenTemp = 350)
+        {
+            while(ovenTemp <= 355)
+            {
+                int degreeKnobTurned;
+                for(degreeKnobTurned = 0; degreeKnobTurned <= maxKnobTurned; ++degreeKnobTurned)
+                {
+                    ovenTemp += 1;
+                    std::cout << "Increasing the oven temperature." << std::endl;   
+                }
+            break;
+            }
+            std::cout << "Warning. Oven too hot." << std::endl;  
+        }  
     };
 
-    void consumeFuel (std::string, int);
-    void breaksDown (int ageOfHeatingElement);
-    void heatsTheKitchen (int, int);
+    void consumeFuel(std::string, int);
+    void breaksDown(int ageOfHeatingElement);
+    void heatsTheKitchen(int, int);
+    void getBigger(int price)
+    {
+        while(numOfTops < 10)
+        {
+            for(price = 1500 ; price <= 1502; ++price)
+            {
+                numOfTops += 1;
+                std::cout << "Pricier ovens have more cooktops." << std::endl;   
+            }
+        break;
+        }
+        std::cout << "Ovens do not come in a bigger size." << std::endl;   
+    }
 
     RangeControls updatedSettings; 
 };
@@ -311,6 +367,15 @@ struct ShoppingCart
     bool carryGrocery (bool badWheels = false, float weightLimit =  40.2f);
     bool rollsDownHill (bool steepHill, bool fast);
     void isParked (int, std::string, int);
+    void rollDownFaster(int degreeHill)
+    {
+        while(degreeHill > 0 && degreeHill < 90)
+        {
+            ++degreeHill;
+            std::cout << "Shopping cart rolling down faster and faster." << std::endl;
+        }
+        std::cout << "Shopping cart probably not moving much." << std::endl;
+    }
 };
 
 ShoppingCart::ShoppingCart()
@@ -353,10 +418,26 @@ struct Wind
     std::string definition = "movement in air molecules";
     std::string cause = "difference in gas density";
     std::string use;
+    
 
     void transportSeeds (int, std::string, int);
     bool turnTurbines (std::string, float gust = 34.2f);
     void helpBirdTravel (std::string direction2, bool birdFly, float gust = 34.2f);
+    void beaufortScale(int gust, int highParam)
+    {
+        int lowerParam = 1;
+        while (highParam <= 64)
+        {
+            if (gust > lowerParam  && gust < highParam )
+            {
+                lowerParam += 6;
+                std::cout << "Within Beaufort scale." << std::endl;
+            }
+            std::cout << "Gust: " << gust << std::endl;
+            break;
+        }
+        std::cout << "Hurricane alert. Past the top end of the Beaufort scale." << std::endl;
+    }
 }; 
 
 Wind::Wind()
@@ -395,15 +476,27 @@ void Wind::helpBirdTravel (std::string direction2, bool birdFly, float gust)
 struct PlaneWings  
 {
     PlaneWings();
-    float flex = 25.3f;
+    int maxFlex = 28;
     int fuelCarried = 23;
     int numOfAilerons = 4;
     int numEngines;
     float wingSpan;
 
-    void generateLift (bool, std::string);
-    bool reduceDrag  (float tailwind = 10.f);
-    void lowersLandingSpeed (int drag, bool landed =  false, float landingSpeed = 30.2f);
+    void generateLift(bool, std::string);
+    bool reduceDrag(float tailwind = 10.f);
+    void lowersLandingSpeed(int drag, bool landed =  false, float landingSpeed = 30.2f);
+    void flex(int flex = 10)
+    {
+        while (flex < maxFlex)
+        {
+            for (wingSpan = 200; wingSpan <= 202; ++wingSpan)
+            {
+            flex += 1;
+            std::cout << "Longer the wing, more it can flex." << std::endl;   
+            }
+        }
+        std::cout << "Wing broken when flexed over 28ft." << std::endl;
+    }
 };
 
 PlaneWings::PlaneWings()
@@ -443,11 +536,20 @@ struct LandingGear
     int numWheels = 8;
     float weightOfNose = 34.2f;
     int numMainLandingGear;
-    float pressureTire = 200.1f;
+    float maxTirePressure = 200.1f;
 
     int reduceLandingImpact (float tirePressure = 250.2f, int landingSpeed = 20);
     bool preventFuselageHittingGround (bool retractLandingGear = false);
     void toggleLandingGear (bool, std::string);
+    void inflate(float currentPressure)
+    {  
+        while  ( currentPressure <= maxTirePressure)
+        {
+            std::cout << "Tire pressure should ideally reach " << maxTirePressure << std::endl;
+            break;
+        }
+        std::cout << "Tires burst." << std::endl;
+    }
 };
 
 LandingGear::LandingGear()
@@ -505,9 +607,19 @@ struct PlaneTail
     float heightUpperRudder = 62.f;
     int powerConsumed = 1;
     
-    void runPowerUnit (std::string);
-    void consumePower (bool);
-    void turnPlane (bool lowerRudderOpen = true);
+    void runPowerUnit(std::string);
+    void consumePower(bool);
+    void turnPlane(bool lowerRudderOpen = true);
+    void cancelRightTurn( int degreeOfrightTurnInducedByDrag, int rudderDegree)
+    {
+        while (degreeOfrightTurnInducedByDrag <= 90)
+        {
+            for(degreeOfrightTurnInducedByDrag = 1 ; degreeOfrightTurnInducedByDrag <= 90; ++degreeOfrightTurnInducedByDrag )
+            rudderDegree -= degreeOfrightTurnInducedByDrag;
+            std::cout << "Rudder coordinates the plan to turn"<< std::endl;
+        }
+        std::cout << "Emergency landing! Strong drag."<< std::endl;
+    }  
 };
 
 PlaneTail::PlaneTail()
@@ -556,36 +668,50 @@ struct PassengerCabin
     float weightCarryOn = 1;
     int aisleWidth;
 
-    void carryPassengers (int numPassengers = 200);
-    void carryToilets (int numOfToilets, int numPassengers);
-    void blanketsAlert (int numPassengers, int numBlankets);
+    void carryPassengers(int numPassengers = 200);
+    void carryToilets(int numOfToilets, int numPassengers);
+    void blanketsAlert(int numPassengers, int numBlankets);
+    void supplyJuice( int numPassengers, int juiceConsumed)
+    {
+        int juiceInStock = 0;
+        auto np = numPassengers;
+        while (juiceConsumed <= 2)
+        {
+            for(np = 1; np <= 2; ++np)
+            {
+                juiceInStock++; 
+                std::cout << "Each passenger may have 1+ juice box." << std::endl;
+            }
+        break;
+        }
+        std::cout << "Offer passenger something else to drink." << std::endl;
+    }
+    
 };
-
-using namespace std;
 
 PassengerCabin::PassengerCabin()
 : aisleWidth(1)
 {   
-    cout << "Passenger cabin typically has "  << aisleWidth * 2 << " " << aisleWidth << "ft wide aisles." << endl;
+    std::cout << "Passenger cabin typically has "  << aisleWidth * 2 << " " << aisleWidth << "ft wide aisles." << std::endl;
 }
 
 void PassengerCabin::carryPassengers (int numPassengers)
 {
-    cout << "Carrying: " << numPassengers << " passengers"<<endl;
+    std::cout << "Carrying: " << numPassengers << " passengers"<< std::endl;
 }
 
 void PassengerCabin::carryToilets (int numOfToilets, int numPassengers)
 {
-    cout << "One toilet allocated per " << numPassengers / numOfToilets << " passengers." << endl;  
+    std::cout << "One toilet allocated per " << numPassengers / numOfToilets << " passengers." << std::endl;  
 }
 
 void PassengerCabin::blanketsAlert (int numPassengers, int numBlankets)
 {
     if(numPassengers < numBlankets)
     {
-        cout << "Carrying: " << numBlankets << "blankets"<<endl;
+        std::cout << "Carrying: " << numBlankets << "blankets" << std::endl;
     }
-    cout << "Stock " << (numPassengers - numBlankets) << " more blankets at least!" << endl;
+    std::cout << "Stock " << (numPassengers - numBlankets) << " more blankets at least!" << std::endl;
 }
 
 struct Fuselage
@@ -600,6 +726,19 @@ struct Fuselage
     void formsPlaneStructure (float fuselageDiameter = 234.3f);
     bool keepsHeatOut (std::string fuselageMaterial);
     void storeCargo (float);
+    void painExterior(int paintWeight, double mainDiameter)
+    {
+        while (paintWeight < 600)
+        {
+            for(paintWeight = 1; paintWeight < 600; ++paintWeight)
+            {
+                mainDiameter += 1.11111;
+                std::cout << "More paint adds to the resulting diameter of the fuselage." << std::endl;
+            }
+        break;      
+        }
+        std::cout << "Not up to code. Too much paint." << std::endl;
+    }
 };
 
 Fuselage::Fuselage()
@@ -648,6 +787,19 @@ struct JumboJet
     bool fly(bool safetyInspection, double gust);
     void carryCargo(int maxWeightPermitLuggagePerPassenger);
     std::string carryFuel(int);
+    void increaseAirportProfit(int airportProfit, int flightsPerDay)
+    {
+        while (flightsPerDay < 136)
+        {
+            for (flightsPerDay = 1; flightsPerDay < 136; ++flightsPerDay)
+            {
+                airportProfit += 100;
+                std::cout << "Our airport is growing." << std::endl;
+            }
+        break;
+        }
+        std::cout << "Excessive maintenance cost. The cons outweigh the pros." << std::endl;
+    }
 }; 
 
 void JumboJet::numJumboJet(std::string airport = "Burlington")
@@ -720,15 +872,17 @@ int main()
     Mittens.makeNoise(true);
     Mittens.scratchFurniture(false, 10);
     Mittens.sleep(true);
+    Mittens.gainWeight(10, 20);
 
      std::cout << "Mittens has a "<< Mittens.tailLength << " inch long " << Mittens.furColor << " tail!" <<std::endl;
-   
+    
     
     Cat::Kitten MittensJunior;
     
     MittensJunior.feed(true);
     MittensJunior.pet(true, 20);
     MittensJunior.roamNeighborhood(false, 30);
+    MittensJunior.roll(97, 6);
     
     std::cout << "Mittens Junior is "<< (2022 - MittensJunior.birthYear) << " year old " << MittensJunior.catBreed <<std::endl;
 
@@ -738,7 +892,8 @@ int main()
     myRange.consumeFuel("electric", 65);
     myRange.breaksDown(70);
     myRange.heatsTheKitchen(7, 420);
-
+    myRange.getBigger(1501);
+    
     std::cout << "My range has a "<< myRange.fuelType << " powered oven that reaches up to " << myRange.maxTempOven << " F in temp." << std::endl;
 
     Range::RangeControls specialFeature;
@@ -750,6 +905,7 @@ int main()
     backControls.informCurrentTime(false);
     backControls.indicateRepairDate("July 25th 2022", true);
     backControls.selfCleans(false, "light");
+    backControls.turnUpTemp(350);
 
     std::cout << "The most popular model is "<< backControls.controlPanelColor << " with its cotrol panel width of " << backControls.controlPanelWidth << "." << std::endl;
     
@@ -758,6 +914,7 @@ int main()
     myCart.carryGrocery(false, 24.f);
     myCart.rollsDownHill(false, false);
     myCart.isParked(60, "unknown", 100);
+    myCart.rollDownFaster(80);
 
     myCart.cartStore = "Costco";
 
@@ -769,6 +926,7 @@ int main()
     westerlies.transportSeeds(10, "poplar", 10);
     westerlies.turnTurbines("North West", 90.f);
     westerlies.helpBirdTravel("West", false, 80);
+    westerlies.beaufortScale(10, 64);
 
      std::cout << "Wind defined as "<< westerlies.definition << " mainly occurs due to " << westerlies.cause << "." << std::endl;
 
@@ -777,6 +935,7 @@ int main()
     DeltaAirWings.generateLift(true, "down");
     DeltaAirWings.reduceDrag(10.f);
     DeltaAirWings.lowersLandingSpeed(10, false, 50);
+    DeltaAirWings.flex(26);
 
      std::cout << "The jumbo jet has a wingspan of "<< DeltaAirWings.wingSpan << " ft and " << DeltaAirWings.numEngines << " engines are attached to the lower side of the wings." << std::endl;
 
@@ -785,14 +944,16 @@ int main()
     noseLandingGear.reduceLandingImpact(250.2f, 20);
     noseLandingGear.preventFuselageHittingGround(false);
     noseLandingGear.toggleLandingGear(true, "retracted");
+    noseLandingGear.inflate(200.f);
 
-     std::cout << "The nose landing gear has  "<< noseLandingGear.numMainLandingGear/4 << " wheels and the pressure in the tires is about " << noseLandingGear.pressureTire << " psi." << std::endl;
+     std::cout << "The nose landing gear has  "<< noseLandingGear.numMainLandingGear/4 << " wheels and the pressure in the tires is about " << noseLandingGear.maxTirePressure << " psi." << std::endl;
 
     PlaneTail DeltaAirTail;
 
     DeltaAirTail.runPowerUnit("on the ground");
     DeltaAirTail.consumePower(false);
     DeltaAirTail.turnPlane(false);
+    DeltaAirTail.cancelRightTurn(80, 70);
 
     std::cout << "The tip of the tail fin is  "<< DeltaAirTail.heightUpperRudder << " above the ground." << std::endl;
     
@@ -801,6 +962,7 @@ int main()
     touristClass.carryPassengers(200);
     touristClass.carryToilets(12, 400);
     touristClass.blanketsAlert(200, 180);
+    touristClass.supplyJuice(29, 2);
 
     touristClass.seatMaterial = "polyester";
 
@@ -813,6 +975,7 @@ int main()
     DeltaAirFuselage.storeCargo(1.f);
 
     DeltaAirFuselage.planeMaterial = "aluminum alloy";
+    DeltaAirFuselage.painExterior(620, 1.1);
 
     std::cout << "Much of the 747 is made from  "<< DeltaAirFuselage.planeMaterial << " covered with " << DeltaAirFuselage.weightExteriorPaint << " lbs of exterior paint." << std::endl;
     
@@ -822,6 +985,7 @@ int main()
     Delta.fly(true, 30);
     Delta.carryCargo(1);
     Delta.numJumboJet("Rutland");
+    Delta.increaseAirportProfit(100, 137);
 
     std::cout << "A jumbo jet carries about "<< Delta.carryFuel(7) << " gallons of fuel in 7 tanks." << std::endl;
 
