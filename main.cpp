@@ -97,10 +97,11 @@ struct Cat
         void roamNeighborhood(bool rainyWeather, float avgCatTravels = 20.f);
         void roll(int numRolls, int happyIdxOutOfTen = 0)
         {
+            auto hi = happyIdxOutOfTen;
             numRolls = 0;
             while (numRolls < 100)
             {  
-                for(happyIdxOutOfTen = 1; happyIdxOutOfTen <= 10; ++happyIdxOutOfTen)
+                for(hi = 1; hi <= 10; ++hi)
                 {
                     numRolls+=10;
                     std::cout << "Kitten rolls " << numRolls  << " times on the floor."  << std::endl; 
@@ -117,12 +118,13 @@ struct Cat
     void makeNoise(bool foodBowlEmpty = true);
     bool sleep(bool isAsleep = true);
     void typicalCat(std::string, int, float);
-    void gainWeight(int weight, int overweight = 20) 
+    void gainWeight(int weight) 
     {
-       
+        auto w = weight;
+        int overweight = 20;
         while (weight < overweight)
             {
-                for(weight = 10; weight <= 20; ++weight)
+                for(w = 1; w <= 3; ++w)
                 {
                 dailyFoodIntake += 1.f;
                 std::cout << "Kitty eating more and more every day" << std::endl;
@@ -612,10 +614,11 @@ struct PlaneTail
     void turnPlane(bool lowerRudderOpen = true);
     void cancelRightTurn( int degreeOfrightTurnInducedByDrag, int rudderDegree)
     {
+        auto dort = degreeOfrightTurnInducedByDrag;
         while (degreeOfrightTurnInducedByDrag <= 90)
         {
-            for(degreeOfrightTurnInducedByDrag = 1 ; degreeOfrightTurnInducedByDrag <= 90; ++degreeOfrightTurnInducedByDrag )
-            rudderDegree -= degreeOfrightTurnInducedByDrag;
+            for(dort = 1 ; dort <= 4; ++dort )
+            rudderDegree -= dort;
             std::cout << "Rudder coordinates the plan to turn"<< std::endl;
         }
         std::cout << "Emergency landing! Strong drag."<< std::endl;
@@ -726,14 +729,17 @@ struct Fuselage
     void formsPlaneStructure (float fuselageDiameter = 234.3f);
     bool keepsHeatOut (std::string fuselageMaterial);
     void storeCargo (float);
-    void painExterior(int paintWeight, double mainDiameter)
+    void paintExterior(int paintWeight)
     {
+        double mainDiameter = 1.112;
+        auto pw = paintWeight;
         while (paintWeight < 600)
         {
-            for(paintWeight = 1; paintWeight < 600; ++paintWeight)
+            
+            for(pw = 1; pw < 3; ++pw)
             {
                 mainDiameter += 1.11111;
-                std::cout << "More paint adds to the resulting diameter of the fuselage." << std::endl;
+                std::cout << "More paint adds to a larger diameter of the fuselage." << std::endl;
             }
         break;      
         }
@@ -789,9 +795,10 @@ struct JumboJet
     std::string carryFuel(int);
     void increaseAirportProfit(int airportProfit, int flightsPerDay)
     {
+        auto fpd = flightsPerDay;
         while (flightsPerDay < 136)
         {
-            for (flightsPerDay = 1; flightsPerDay < 136; ++flightsPerDay)
+            for (fpd = 1; fpd < 3; ++fpd)
             {
                 airportProfit += 100;
                 std::cout << "Our airport is growing." << std::endl;
@@ -872,7 +879,7 @@ int main()
     Mittens.makeNoise(true);
     Mittens.scratchFurniture(false, 10);
     Mittens.sleep(true);
-    Mittens.gainWeight(10, 20);
+    Mittens.gainWeight(10);
 
      std::cout << "Mittens has a "<< Mittens.tailLength << " inch long " << Mittens.furColor << " tail!" <<std::endl;
     
@@ -975,7 +982,7 @@ int main()
     DeltaAirFuselage.storeCargo(1.f);
 
     DeltaAirFuselage.planeMaterial = "aluminum alloy";
-    DeltaAirFuselage.painExterior(620, 1.1);
+    DeltaAirFuselage.paintExterior(500);
 
     std::cout << "Much of the 747 is made from  "<< DeltaAirFuselage.planeMaterial << " covered with " << DeltaAirFuselage.weightExteriorPaint << " lbs of exterior paint." << std::endl;
     
@@ -985,7 +992,7 @@ int main()
     Delta.fly(true, 30);
     Delta.carryCargo(1);
     Delta.numJumboJet("Rutland");
-    Delta.increaseAirportProfit(100, 137);
+    Delta.increaseAirportProfit(100, 135);
 
     std::cout << "A jumbo jet carries about "<< Delta.carryFuel(7) << " gallons of fuel in 7 tanks." << std::endl;
 
