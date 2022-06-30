@@ -927,14 +927,14 @@ int main()
 
      std::cout << "Wind defined as "<< westerlies.definition << " mainly occurs due to " << westerlies.cause << "." << std::endl;
 
-    PlaneWings DeltaAirWings;
+    PlaneWings deltaAirWings;
 
-    DeltaAirWings.generateLift(true, "down");
-    DeltaAirWings.reduceDrag(10.f);
-    DeltaAirWings.lowersLandingSpeed(10, false, 50);
-    DeltaAirWings.flex(26);
+    deltaAirWings.generateLift(true, "down");
+    deltaAirWings.reduceDrag(10.f);
+    deltaAirWings.lowersLandingSpeed(10, false, 50);
+    deltaAirWings.flex(26);
 
-     std::cout << "The jumbo jet has a wingspan of "<< DeltaAirWings.wingSpan << " ft and " << DeltaAirWings.numEngines << " engines are attached to the lower side of the wings." << std::endl;
+     std::cout << "The jumbo jet has a wingspan of "<< deltaAirWings.wingSpan << " ft and " << deltaAirWings.numEngines << " engines are attached to the lower side of the wings." << std::endl;
 
     LandingGear noseLandingGear;
     
@@ -945,14 +945,14 @@ int main()
 
      std::cout << "The nose landing gear has  "<< noseLandingGear.numMainLandingGear/4 << " wheels and the pressure in the tires is about " << noseLandingGear.maxTirePressure << " psi." << std::endl;
 
-    PlaneTail DeltaAirTail;
+    PlaneTail deltaAirTail;
 
-    DeltaAirTail.runPowerUnit("on the ground");
-    DeltaAirTail.consumePower(false);
-    DeltaAirTail.turnPlane(false);
-    DeltaAirTail.cancelRightTurn(40, 0);
+    deltaAirTail.runPowerUnit("on the ground");
+    deltaAirTail.consumePower(false);
+    deltaAirTail.turnPlane(false);
+    deltaAirTail.cancelRightTurn(40, 0);
 
-    std::cout << "The tip of the tail fin is  "<< DeltaAirTail.heightUpperRudder << " above the ground." << std::endl;
+    std::cout << "The tip of the tail fin is  "<< deltaAirTail.heightUpperRudder << " above the ground." << std::endl;
     
     PassengerCabin touristClass;
 
@@ -965,26 +965,26 @@ int main()
 
     std::cout << "The passenger cabin has two  "<< touristClass.aisleWidth << " aisles and  normally carries a maximum of " << touristClass.numSeats << " people." << std::endl;
     
-    Fuselage DeltaAirFuselage;
+    Fuselage deltaAirFuselage;
 
-    DeltaAirFuselage.formsPlaneStructure(234.3f);
-    DeltaAirFuselage.keepsHeatOut("aluminum alloy");
-    DeltaAirFuselage.storeCargo(1.f);
+    deltaAirFuselage.formsPlaneStructure(234.3f);
+    deltaAirFuselage.keepsHeatOut("aluminum alloy");
+    deltaAirFuselage.storeCargo(1.f);
 
-    DeltaAirFuselage.planeMaterial = "aluminum alloy";
-    DeltaAirFuselage.paintExterior(500);
+    deltaAirFuselage.planeMaterial = "aluminum alloy";
+    deltaAirFuselage.paintExterior(500);
 
-    std::cout << "Much of the 747 is made from  "<< DeltaAirFuselage.planeMaterial << " covered with " << DeltaAirFuselage.weightExteriorPaint << " lbs of exterior paint." << std::endl;
+    std::cout << "Much of the 747 is made from  "<< deltaAirFuselage.planeMaterial << " covered with " << deltaAirFuselage.weightExteriorPaint << " lbs of exterior paint." << std::endl;
     
-    JumboJet Delta;
+    JumboJet delta;
 
-    Delta.carryPassengers("Tampa", 100);
-    Delta.fly(true, 30);
-    Delta.carryCargo(1);
-    Delta.numJumboJet("Rutland");
-    Delta.increaseAirportProfit(100, 135);
+    delta.carryPassengers("Tampa", 100);
+    delta.fly(true, 30);
+    delta.carryCargo(1);
+    delta.numJumboJet("Rutland");
+    delta.increaseAirportProfit(100, 135);
 
-    std::cout << "A jumbo jet carries about "<< Delta.carryFuel(7) << " gallons of fuel in 7 tanks." << std::endl;
+    std::cout << "A jumbo jet carries about "<< delta.carryFuel(7) << " gallons of fuel in 7 tanks." << std::endl;
 
 }
 
