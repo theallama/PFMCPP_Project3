@@ -98,10 +98,9 @@ struct Cat
         void roll(int numRolls, int happyIdxOutOfTen = 0)
         {
             auto hi = happyIdxOutOfTen;
-            numRolls = 0;
             while (numRolls < 100)
             {  
-                for(hi = 1; hi <= 10; ++hi)
+                for(hi = 1; hi <= 9; ++hi)
                 {
                     numRolls+=10;
                     std::cout << "Kitten rolls " << numRolls  << " times on the floor."  << std::endl; 
@@ -273,7 +272,7 @@ struct Range
     {
         while(numOfTops < 10)
         {
-            for(price = 1500 ; price <= 1502; ++price)
+            for(price = 1500 ; price <= 1505; ++price)
             {
                 numOfTops += 1;
                 std::cout << "Pricier ovens have more cooktops." << std::endl;   
@@ -488,7 +487,7 @@ struct PlaneWings
     void generateLift(bool, std::string);
     bool reduceDrag(float tailwind = 10.f);
     void lowersLandingSpeed(int drag, bool landed =  false, float landingSpeed = 30.2f);
-    void flex(int flex = 10)
+    void flex(int flex)
     {
         while (flex < maxFlex)
         {
@@ -893,7 +892,7 @@ int main()
     MittensJunior.feed(true);
     MittensJunior.pet(true, 20);
     MittensJunior.roamNeighborhood(false, 30);
-    MittensJunior.roll(97, 6);
+    MittensJunior.roll(8, 6);
     
     std::cout << "Mittens Junior is "<< (2022 - MittensJunior.birthYear) << " year old " << MittensJunior.catBreed <<std::endl;
 
@@ -925,7 +924,7 @@ int main()
     myCart.carryGrocery(false, 24.f);
     myCart.rollsDownHill(false, false);
     myCart.isParked(60, "unknown", 100);
-    myCart.rollDownFaster(80);
+    myCart.rollDownFaster(85);
 
     myCart.cartStore = "Costco";
 
